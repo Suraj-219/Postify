@@ -5,6 +5,7 @@ const postModel = require("./models/post");
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -54,7 +55,7 @@ app.post('/login', async (req, res) => {
 
     bcrypt.compare(password, user.password, (err, result)=>{
         if(result) {
-            let token = jwt.sign({email: email, userid: user._id}, "secret");
+            let token = jwt.sign({email: email, userid: user._id}, JWT_SECRET);
             res.cookie("token", token);
             res.status(200).send("You can login");
         }
@@ -70,7 +71,7 @@ app.get('/logout', (req, res) => {
 function isLoggedIn(req, res, next){
     if(req.cookies.token === "") res.send("You must be logged in");
     else{
-        let data = jwt.verify(req.cookies.token, "secret");
+        let data = jwt.verify(req.cookies.token, JWT_SECRET);
         req.user = data;
         next();
     }
