@@ -25,9 +25,11 @@ app.get('/profile', isLoggedIn, async (req,res) => {
     res.render("profile", {user});
 });
 
-app.get('/post', isLoggedIn, async (req, res) => {
+app.post('/post', isLoggedIn, async (req, res) => {
     let user = await userModel.findOne({email: req.user.email});
     let {content} = req.body;
+
+    if(!content) return res.status(400).send('Post content is required');
 
     let post = await postModel.create({
         user: user._id,
@@ -54,7 +56,7 @@ app.post('/register', async (req, res)=> {
                 password: hash
             });
 
-            let token = jwt.sign({email: email, userid: user._id}, "secret");
+            let token = jwt.sign({email: email, userid: user._id}, JWT_SECRET);
             res.cookie("token", token);
             res.send("registered");
         })
@@ -83,11 +85,16 @@ app.get('/logout', (req, res) => {
 });
 
 function isLoggedIn(req, res, next){
-    if(req.cookies.token === "") res.redirect("/login");
-    else{
-        let data = jwt.verify(req.cookies.token, JWT_SECRET);
+    const token = req.cookies && req.cookies.token;
+    if(!token) return res.redirect('/login');
+
+    try{
+        const data = jwt.verify(token, JWT_SECRET);
         req.user = data;
         next();
+    }catch(err){
+        res.clearCookie('token');
+        return res.redirect('/login');
     }
 }
 
