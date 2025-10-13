@@ -5,18 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        body {
+            background: linear-gradient(120deg, #232526 0%, #0f2027 50%, #2c5364 100%);
+            background-attachment: fixed;
+            color: #e6eef2; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .app-container {
+            min-height: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+            justify-content: center;
+            padding: 32px;
+        }
+        .card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            max-width: 880px;
+            width: 100%;
+            color: #e6eef2;
+        }
+        </style>
 </head>
 <body>
-    <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
-        <h3 class="text-3xl mb-5">Create Account</h3>
-    <form action="/register" method="post">
-     <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="text" placeholder="name" name="name">
-     <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="text" placeholder="username" name="username">
-     <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="password" placeholder="password" name="password">
-     <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="email" placeholder="email" name="email">
-     <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="number" placeholder="age" name="age">
-     <input class="px-5 py-2 rounded-md bg-blue-500" type="submit" value="Create Account">
-    </form> 
+    <div class="app-container">
+            <div class="brand mb-5">Postify</div>
+
+        <section class="card">
+            <h3 class="font-size:1.5rem;margin-bottom:8px mb-3">Create Account</h3>
+            <form action="/register" method="post">
+                <div class="form-row">
+                    <input  type="text" placeholder="name" name="name">
+                    <input  type="text" placeholder="username" name="username">
+                    <input  type="password" placeholder="password" name="password">
+                    <input  type="email" placeholder="email" name="email">
+                    <input  type="number" placeholder="age" name="age">
+                    <button class="btn" type="submit">Create Account</button>
+                </div>
+            </form> 
+        </section>
     </div>
 </body>
 </html>
