@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <style>
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-        }
-        body {
-            background: linear-gradient(120deg, #232526 0%, #0f2027 50%, #2c5364 100%);
-            background-attachment: fixed;
-            color: #e6eef2; 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .app-container {
-            min-height: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: normal;
-            justify-content: center;
-            padding: 32px;
-        }
-        .card {
-            background: rgba(255,255,255,0.04);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-            max-width: 880px;
-            width: 100%;
-            color: #e6eef2;
-        }
-        </style>
-</head>
-<body>
-    <div class="app-container">
-            <div class="brand mb-5">Postify</div>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Postify</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" href="/stylesheets/style.css">
 
-        <section class="card">
-            <h3 class="font-size:1.5rem;margin-bottom:8px mb-3">Create Account</h3>
-            <form action="/register" method="post">
-                <div class="form-row">
-                    <input  type="text" placeholder="name" name="name">
-                    <input  type="text" placeholder="username" name="username">
-                    <input  type="password" placeholder="password" name="password">
-                    <input  type="email" placeholder="email" name="email">
-                    <input  type="number" placeholder="age" name="age">
-                    <button class="btn" type="submit">Create Account</button>
-                </div>
-            </form> 
-        </section>
-    </div>
-</body>
+    </head>
+    <body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-slate-100 flex items-center justify-center">
+        <main class="w-full max-w-3xl p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                
+                <section class="hidden md:flex flex-col justify-center p-8 rounded-lg bg-gradient-to-b from-indigo-600 to-indigo-500 shadow-lg">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-white mb-2">Postify</h1>
+                    <p class="text-indigo-100/90">A simple, modern place to share short posts with your friends. Create an account to get started.</p>
+                    <div class="mt-6 text-sm text-indigo-100/80">Already have an account? <a href="/login" class="underline font-medium text-white">Sign in</a></div>
+                </section>
+
+                <section class="bg-slate-900/60 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-slate-700">
+                    <h2 class="text-2xl font-semibold mb-2">Create your account</h2>
+                    <p class="text-sm text-slate-300 mb-6">Join Postify and start posting in seconds.</p>
+
+                    <form action="/register" method="post" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="block">
+                                <span class="text-sm text-slate-300">Full name</span>
+                                <input name="name" type="text" required class="mt-1 block w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Name">
+                            </label>
+
+                            <label class="block">
+                                <span class="text-sm text-slate-300">Username</span>
+                                <input name="username" type="text" required class="mt-1 block w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Username">
+                            </label>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="block">
+                                <span class="text-sm text-slate-300">Email</span>
+                                <input name="email" type="email" required class="mt-1 block w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="user@gmail.com">
+                            </label>
+
+                            <label class="block">
+                                <span class="text-sm text-slate-300">Age</span>
+                                <input name="age" type="number" min="0" class="mt-1 block w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Number">
+                            </label>
+                        </div>
+
+                        <label class="block">
+                            <span class="text-sm text-slate-300">Password</span>
+                            <input name="password" type="password" required class="mt-1 block w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Create a strong password">
+                        </label>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-indigo-500 hover:bg-indigo-600 px-4 py-2 text-white font-semibold shadow">Create Account</button>
+                        </div>
+                    </form>
+
+                    <div class="mt-4 text-center text-sm text-slate-400">By creating an account you agree to our <a href="#" class="underline">Terms</a> and <a href="#" class="underline">Privacy Policy</a>.</div>
+                </section>
+            </div>
+        </main>
+    </body>
 </html>
