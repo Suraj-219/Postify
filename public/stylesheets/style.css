@@ -1,8 +1,8 @@
 :root{
     --gradient-1: #2d66bc; 
-    --gradient-2: #27433f; 
-    --gradient-3: #72c6b4; 
-    --gradient-4: #2f5a54;
+    --gradient-2: #492e62; 
+    --gradient-3: #bfddd8; 
+    --gradient-4: #44316a;
 }
 
 body::before{
