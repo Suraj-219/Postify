@@ -17,10 +17,28 @@ const userSchema = mongoose.Schema({
         lowercase: true,
         trim: true,
     }, 
-    name: String,
+     name: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        lowercase: true,
+        miniLength: [3, 'Name must be at least 3 characters long'],
+    },
     age: Number,
-    email: String,
-    password: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+        miniLength: [13, 'Email must be at least 13 characters long'],
+    password: {
+        type: String,
+        required: true,
+        miniLength: [6, 'Password must be at least 6 characters long'],
+        trim: true,
+    },
     profilepic: {
         type: String,
         default: "default.jpg"
