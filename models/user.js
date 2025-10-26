@@ -10,7 +10,13 @@ mongoose.connect(process.env.MONGO_URI,{
 });
 
 const userSchema = mongoose.Schema({
-    username: String,
+    username: {
+        type: String,
+        unique: true,
+        required: true,
+        lowercase: true,
+        trim: true,
+    }, 
     name: String,
     age: Number,
     email: String,
